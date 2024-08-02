@@ -1,4 +1,3 @@
-from robocorp.tasks import task
 from RPA.Robocorp.WorkItems import WorkItems
 
 from selenium import webdriver
@@ -118,8 +117,7 @@ def save_data_to_excel(data, filename):
     df.write_excel(f"output/{filename}")
 
 
-@task
-def main():
+def run_task():
     wi = WorkItems()
     wi.get_input_work_item()
     search_query = wi.get_work_item_variable("search_query")
@@ -128,3 +126,6 @@ def main():
     content = gothamist.fetch()
     data = gothamist.scrape(content)
     save_data_to_excel(data, "output.xlsx")
+
+if __name__ == "__main__":
+    run_task()
